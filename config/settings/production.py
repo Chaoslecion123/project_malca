@@ -5,7 +5,7 @@ from .base import env
 
 # Base
 SECRET_KEY = env('DJANGO_SECRET_KEY')
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['comparteride.com'])
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['fiisbook.ga'])
 
 # Databases
 DATABASES['default'] = env.db('DATABASE_URL')  # NOQA
@@ -77,10 +77,6 @@ ADMIN_URL = env('DJANGO_ADMIN_URL')
 # Anymail (Mailgun)
 INSTALLED_APPS += ['anymail']  # noqa F405
 EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-# ANYMAIL = {
-#     'MAILGUN_API_KEY': env('MAILGUN_API_KEY'),
-#     'MAILGUN_SENDER_DOMAIN': env('MAILGUN_DOMAIN')
-# }
 
 # Gunicorn
 INSTALLED_APPS += ['gunicorn']  # noqa F405
