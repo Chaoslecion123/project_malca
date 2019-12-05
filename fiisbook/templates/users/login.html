@@ -2,17 +2,17 @@
 
 {% block content %}
 <div class="text-center"  style="margin-top:122px ; border: none !important;">
-    <div class="card-header ">
+    <div class=" ">
         <h2 style="color:white;-webkit-text-stroke-width: thick;">FIISBOOK</h2>
     </div>
     <div class="card-body">
         <form action="" method="post"> {% csrf_token %}
             <div class="form-group">
-            <label style="color:white" for="username">Username</label>
+            <label style="color:white" for="username"><strong>CÓDIGO</strong></label>
             <input type="text" name="username" class="form-control">
         </div>
         <div class="form-group">
-            <label style="color:white" for="password">Password</label>
+            <label style="color:white" for="password"><strong>CONTRASEÑA</strong></label>
             <input type="password" name="password" class="form-control">
         </div>
 
@@ -25,6 +25,9 @@
 {% endblock content %}
 {% block styles %}
 <style>
+
+
+
 @media (max-width: 360px) {
 .movil{
     display: block !important;
