@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="" style="margin: auto auto; max-width: 520px;">
+    <div class="card-header d-flex justify-content-between">
+        <div style="text-align: left;">
+            <div class="d-flex" style="color:#0534A2;font-size:28px;"><img src="{% static 'imagen/fiis.png' %}" style="height:50px;width:55px"> <div style="margin-top: 4px;-webkit-text-stroke-width: thick;">FIISBOOK</div></div>
+        </div>
+        <div style="text-align: right;margin-top: 10px; margin-left:-3px;">
+            <img src="./iconos/menu.svg" style="cursor:pointer;width: 20%;" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class=row>
+            <div class="col">
+                {% for curso in cursos %}
+                {% if request.user.is_staff %}
+                <div class="card">
+                <a href="{% url 'interface' pk=curso.pk %}">
+                    <div class="card-header">
+                        {{curso.name}}
+                    </div>
+                    <div class="card-body">
+                    <div class="card-title">
+                        {% for teacher in curso.teacher.all %}
+                            <strong>Profesor {{teacher}}</strong>
+                        {% endfor %}
+                    </div>
+                    <div class="card-subtitle">
+                        Día: {{curso.start.day}} {{curso.start.hour}}:{{curso.start.minute}} pm - {{curso.end.hour}}:{{curso.end.minute}} pm
+                    </div>
+                    <div class="card-subtitle">
+                        {% if curso.document %}
+                        <a href="{{curso.document.url}}">[[]] Sylabus</a>
+                        {% endif %}
+                    </div>
+                </div>
+                </a>
+            </div>
+                {% else %}
+                <div class="card">
+                    <div class="card-header">
+                        <a class="navbar-brand" href="{% url 'curso-detail' pk=curso.pk %}">{{curso.name}}</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">
+                            {% for teacher in curso.teacher.all %}
+                                <strong>Profesor {{teacher}}</strong>
+                            {% endfor %}
+                        </div>
+                        <div class="card-subtitle">
+                            Día: {{curso.start.day}} {{curso.start.hour}}:{{curso.start.minute}} pm - {{curso.end.hour}}:{{curso.end.minute}} pm
+                        </div>
+                        <div class="card-subtitle">
+                            {% for docu in curso.teacher.all %}
+                                <a href="{{docu.document.url}}">[[]] Sylabus</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block styles %}
+
+<style>
+@media (max-width: 400px) {
+        .movil{
+
+            display: block !important;
+        }
+        .mar{
+            margin-top:5px;
+
+        }
+
+}
+    .mau{
+        border: none;
+
+    }
+
+
+._16vg>._5xmp {
+    display: inline-block;
+}
+
+._16vg>._5xmp:not(:last-child) {
+    margin-right: 6px;
+}
+
+.subtitulo{
+
+    font-size:12px;
+    padding-top:-1px
+}
+.titulo{
+    font-size: 15px;
+}
+
+.cuadro{
+    border-radius:5px;
+     height: 120px;
+}
+</style>
+
+{% endblock styles %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="shortcut icon" type= "icono/png "href="iconos/equipo.png">
+
+</head>
+
+<body>
+
+
+</body>
+
+<script>
+    function cambiar(){
+        var pdrs = document.getElementId('subir-file').files[0].name;
+
+    }
+
+</script>
+</html>
