@@ -13,48 +13,48 @@
 
     <div class="container">
         <div class=row>
-            <div class="col">
+            <div class="col ">
                 {% for curso in cursos %}
                 {% if request.user.is_staff %}
-                <div class="card">
+                <div class="card mt-2">
                 <a href="{% url 'interface' pk=curso.pk %}">
-                    <div class="card-header">
+                    <div class="card-header border">
                         {{curso.name}}
                     </div>
                     <div class="card-body">
-                    <div class="card-title">
+                    <div class="card-title mb-2">
                         {% for teacher in curso.teacher.all %}
-                            <strong>Profesor {{teacher}}</strong>
+                            Profesor:  {{teacher}} {{teacher.last_name}}
                         {% endfor %}
                     </div>
-                    <div class="card-subtitle">
+                    <div class="card-subtitle mb-2">
                         Día: {{curso.start.day}} {{curso.start.hour}}:{{curso.start.minute}} pm - {{curso.end.hour}}:{{curso.end.minute}} pm
                     </div>
-                    <div class="card-subtitle">
+                    <div class="card-subtitle mb-2">
                         {% if curso.document %}
-                        <a href="{{curso.document.url}}">[[]] Sylabus</a>
+                        <a href="{{curso.document.url}}"><i class="fas fa-download mr-2"></i>Syllabus</a>
                         {% endif %}
                     </div>
                 </div>
                 </a>
             </div>
                 {% else %}
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header">
                         <a class="navbar-brand" href="{% url 'curso-detail' pk=curso.pk %}">{{curso.name}}</a>
                     </div>
                     <div class="card-body">
-                        <div class="card-title">
+                        <div class="card-title mb-2">
                             {% for teacher in curso.teacher.all %}
-                                <strong>Profesor {{teacher}}</strong>
+                                <strong>Profesor {{teacher}} {{teacher.last_name}}</strong>
                             {% endfor %}
                         </div>
-                        <div class="card-subtitle">
+                        <div class="card-subtitle mb-2">
                             Día: {{curso.start.day}} {{curso.start.hour}}:{{curso.start.minute}} pm - {{curso.end.hour}}:{{curso.end.minute}} pm
                         </div>
-                        <div class="card-subtitle">
+                        <div class="card-subtitle mb-2">
                             {% for docu in curso.teacher.all %}
-                                <a href="{{docu.document.url}}">[[]] Sylabus</a>
+                                <a href="{{docu.document.url}}"><i class="fas fa-download mr-2"></i>Syllabus</a>
                             {% endfor %}
                         </div>
                     </div>
@@ -71,7 +71,12 @@
 {% block styles %}
 
 <style>
-@media (max-width: 400px) {
+
+body{
+
+    overflow: scroll;
+}
+@media (max-width: 360px) {
         .movil{
 
             display: block !important;
@@ -80,6 +85,7 @@
             margin-top:5px;
 
         }
+
 
 }
     .mau{
